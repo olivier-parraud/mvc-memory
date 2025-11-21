@@ -18,3 +18,4 @@ class ArticleController extends BaseController
         $this->render("article/index", $data);
     }
 }
+
