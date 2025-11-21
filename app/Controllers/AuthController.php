@@ -3,7 +3,7 @@
 namespace App\Controllers;
 namespace Core;
 
-Use Core\BaseController;
+
 
 class AuthController 
 {
