@@ -14,7 +14,6 @@ $router = new Router();
 $router->get('/', 'App\\Controllers\\HomeController@index');
 $router->get("/about", "App\\Controllers\\HomeController@about");
 // La route "/articles" pointe vers la méthode "index" du contrôleur ArticleController
-$router->get('/articles', 'App\\Controllers\\ArticleController@index');
 $router->get('/game', 'App\\Controllers\\GameController@index');
 
 // Exécution du routeur :

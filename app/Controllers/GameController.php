@@ -1,17 +1,17 @@
 <?php
 
 namespace App\Controllers;
+
 use Core\BaseController;
 
 
-class Game extends BaseController
+class GameController extends BaseController
 {
     private array $deck;
     private array $flipped;
     private array $matched;
     private int $moves;
     private bool $game_over;
-    private $game;
 
     public function __construct()
     {
@@ -34,21 +34,19 @@ class Game extends BaseController
     public function index(): void
     {
         session_start();
-        $this->game = new Game();
 
 
-        // Préparer les données pour la vue
         $data = [
             'title' => 'Jeu de Memory',
-            'deck' => $this->game->get_deck(),
-            'flipped' => $this->game->get_flipped(),
-            'matched' => $this->game->get_matched(),
-            'moves' => $this->game->get_moves(),
-            'mismatch' => $this->game->has_missmatch(),
-            'game_over' => $this->game->is_game_over()
+            'deck' => $this->get_deck(),
+            'flipped' => $this->get_flipped(),
+            'matched' => $this->get_matched(),
+            'moves' => $this->get_moves(),
+            'missmatch' => $this->has_missmatch(),
+            'game_over' => $this->is_game_over()
         ];
 
-        $this->render('home/game', $data);
+        $this->render('game/index', $data);
     }
 
 

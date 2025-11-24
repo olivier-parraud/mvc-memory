@@ -1,7 +1,4 @@
-<?php
 
-
-?>
 <div class="game-container">
     <div class="game-header">
         <h1>Jeu de Memory - Retrouve le Parraud</h1>
@@ -20,14 +17,14 @@
         <?php foreach ($deck as $index => $card):
             $isFlipped = in_array($index, $flipped) || in_array($index, $matched);
             $isMatched = in_array($index, $matched);
-            $isMismatch = $mismatch && in_array($index, $flipped) && !$isMatched;
+            $isMissmatch = $missmatch && in_array($index, $flipped) && !$isMatched;
 
             $cardClass = 'card';
             if ($isFlipped) $cardClass .= ' flipped';
             if ($isMatched) $cardClass .= ' matched';
-            if ($isMismatch) $cardClass .= ' mismatch';
+            if ($isMissmatch) $cardClass .= ' missmatch';
         ?>
-            <a href="<?= ($mismatch || $isMatched) ? '#' : '/game?flip=' . $index ?>"
+            <a href="<?= ($missmatch || $isMatched) ? '#' : '/game?flip=' . $index ?>"
                 class="<?= $cardClass ?>"
                 data-index="<?= $index ?>">
                 <div class="card-inner">
@@ -44,10 +41,10 @@
     </div>
 </div>
 
-<?php if ($mismatch): ?>
+<?php if ($missmatch): ?>
     <script>
         setTimeout(function() {
-            window.location.href = '/game?action=clear_mismatch';
+            window.location.href = '/game?action=clear_missmatch';
         }, 1000);
     </script>
 <?php endif; ?>
@@ -179,7 +176,7 @@
         cursor: default;
     }
 
-    .card.mismatch .card-inner {
+    .card.missmatch .card-inner {
         animation: shake 0.5s;
     }
 
