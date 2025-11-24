@@ -72,11 +72,7 @@ class Game extends BaseController
 
 
 
-
-
-        
-
-        $cards = [$card1, $card2, $card3, $card4, $card5, $card6];
+        $cards = [$card1, $card2, $card3, $card4, $card5, $card6, $card7, $card8, $card9, $card10];
 
         $deck = [];
         foreach ($cards as $card) {
