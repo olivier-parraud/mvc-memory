@@ -1,94 +1,17 @@
 <?php
 
 namespace App\Controllers;
-
 use Core\BaseController;
 
-class Card
-{
-    public function __construct(
-        private readonly string $name,
-        private readonly string $image_path
-    ) {}
 
-    public function name(): string
-    {
-        return $this->name;
-    }
-
-    public function image_path(): string
-    {
-        return $this->image_path;
-    }
-
-    public function array(): array
-    {
-        return [
-            'name' => $this->name,
-            'image' => $this->image_path,
-        ];
-    }
-}
-
-
-class GameController extends BaseController
-{
-    private Game $game;
-
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
-    public function index(): void
-    {
-        session_start();
-        $this->game = new Game();
-
-        // Gestion des actions
-        if (isset($_GET['action'])) {
-            switch ($_GET['action']) {
-                case 'reset':
-                    $this->game->reset();
-                    header('Location: /game');
-                    exit;
-                case 'clear_mismatch':
-                    $this->game->clear_missmatch();
-                    header('Location: /game');
-                    exit;
-            }
-        }
-
-        // Gestion du flip de carte
-        if (isset($_GET['flip'])) {
-            $index = (int) $_GET['flip'];
-            $this->game->flip($index);
-            header('Location: /game');
-            exit;
-        }
-
-        // Préparer les données pour la vue
-        $data = [
-            'title' => 'Jeu de Memory',
-            'deck' => $this->game->get_deck(),
-            'flipped' => $this->game->get_flipped(),
-            'matched' => $this->game->get_matched(),
-            'moves' => $this->game->get_moves(),
-            'mismatch' => $this->game->has_missmatch(),
-            'game_over' => $this->game->is_game_over()
-        ];
-
-        $this->render('home/game', $data);
-    }
-}
-
-class Game
+class Game extends BaseController
 {
     private array $deck;
     private array $flipped;
     private array $matched;
     private int $moves;
     private bool $game_over;
+    private $game;
 
     public function __construct()
     {
@@ -107,6 +30,27 @@ class Game
             $this->game_over = $_SESSION['game_over'] ?? false;
         }
     }
+
+    public function index(): void
+    {
+        session_start();
+        $this->game = new Game();
+
+
+        // Préparer les données pour la vue
+        $data = [
+            'title' => 'Jeu de Memory',
+            'deck' => $this->game->get_deck(),
+            'flipped' => $this->game->get_flipped(),
+            'matched' => $this->game->get_matched(),
+            'moves' => $this->game->get_moves(),
+            'mismatch' => $this->game->has_missmatch(),
+            'game_over' => $this->game->is_game_over()
+        ];
+
+        $this->render('home/game', $data);
+    }
+
 
     public function create_new_game(): void
     {
@@ -236,5 +180,31 @@ class Game
     public function get_cover_card(): Card
     {
         return new Card('cover', '/assets/img/cover.jpg');
+    }
+}
+
+class Card
+{
+    public function __construct(
+        private readonly string $name,
+        private readonly string $image_path
+    ) {}
+
+    public function name(): string
+    {
+        return $this->name;
+    }
+
+    public function image_path(): string
+    {
+        return $this->image_path;
+    }
+
+    public function array(): array
+    {
+        return [
+            'name' => $this->name,
+            'image' => $this->image_path,
+        ];
     }
 }
