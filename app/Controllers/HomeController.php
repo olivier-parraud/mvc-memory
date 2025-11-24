@@ -36,4 +36,11 @@ class HomeController extends BaseController
             'title' => "à propos de nous"
         ]);
     }
+
+    public function game(): void 
+{
+    $this->render('home/game',);
 }
+}
+
+

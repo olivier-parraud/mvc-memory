@@ -30,6 +30,7 @@
   <nav>
     <a href="/">Accueil</a> | 
     <a href="/articles">Articles</a>
+    <a href="/home/game"> Jeux </a>
   </nav>
 
   <!-- Contenu principal injecté depuis BaseController -->
