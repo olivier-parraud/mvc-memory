@@ -67,6 +67,15 @@ class Game extends BaseController
         $card4 = new Card('ol_alien', '/assets/img/ol_alien.jpg');
         $card5 = new Card('ol_chapeau', '/assets/img/ol_chapeau.jpg');
         $card6 = new Card('ol_femme', '/assets/img/ol_femme.jpg');
+        $card7 = new Card('ol_chat', '/assets/img/ol_chat.jpg');
+        $card8 = new Card('ol_cyborg', '/assets/img/ol_cyborg.jpg');
+        $card9 = new Card('ol_vieux', '/assets/img/ol_vieux.jpg');
+        $card10 = new Card('ol_emo', '/assets/img/ol_emo.jpg');
+
+
+
+
+
         
 
         $cards = [$card1, $card2, $card3, $card4, $card5, $card6];
