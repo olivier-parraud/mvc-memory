@@ -31,7 +31,58 @@ class Card
 }
 
 
-class Game extends BaseController
+class GameController extends BaseController
+{
+    private Game $game;
+
+    public function __construct()
+    {
+        parent::__construct();
+    }
+
+    public function index(): void
+    {
+        session_start();
+        $this->game = new Game();
+
+        // Gestion des actions
+        if (isset($_GET['action'])) {
+            switch ($_GET['action']) {
+                case 'reset':
+                    $this->game->reset();
+                    header('Location: /game');
+                    exit;
+                case 'clear_mismatch':
+                    $this->game->clear_missmatch();
+                    header('Location: /game');
+                    exit;
+            }
+        }
+
+        // Gestion du flip de carte
+        if (isset($_GET['flip'])) {
+            $index = (int) $_GET['flip'];
+            $this->game->flip($index);
+            header('Location: /game');
+            exit;
+        }
+
+        // Préparer les données pour la vue
+        $data = [
+            'title' => 'Jeu de Memory',
+            'deck' => $this->game->get_deck(),
+            'flipped' => $this->game->get_flipped(),
+            'matched' => $this->game->get_matched(),
+            'moves' => $this->game->get_moves(),
+            'mismatch' => $this->game->has_missmatch(),
+            'game_over' => $this->game->is_game_over()
+        ];
+
+        $this->render('home/game', $data);
+    }
+}
+
+class Game
 {
     private array $deck;
     private array $flipped;
@@ -95,7 +146,7 @@ class Game extends BaseController
         // Vérifier que l'index est valide et que la carte n'est pas déjà trouvée ou retournée
         if (!isset($this->deck[$index]) || in_array($index, $this->matched) || in_array($index, $this->flipped)) {
             return;
-        } 
+        }
 
         // Si on a déjà 2 cartes retournées (tour précédent fini mais non match), on recommence un tour
         if (count($this->flipped) >= 2) {
@@ -177,8 +228,13 @@ class Game extends BaseController
         return $this->game_over;
     }
 
-    public function has_mismatch(): bool
+    public function has_missmatch(): bool
     {
         return count($this->flipped) === 2;
+    }
+
+    public function get_cover_card(): Card
+    {
+        return new Card('cover', '/assets/img/cover.jpg');
     }
 }
