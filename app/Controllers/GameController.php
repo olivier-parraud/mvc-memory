@@ -52,14 +52,14 @@ class GameController extends BaseController
 
     public function create_new_game(): void
     {
-        $card1 = new Card('ol_moustache', '/assets/img/ol_moustache.jpg');
-        $card2 = new Card('ol_casquette', '/assets/img/ol_casquette.jpg');
-        $card3 = new Card('ol_lunette', '/assets/img/ol_lunette.jpg');
+        $card1 = new Card('ol_bebe', '/assets/img/ol_moustache.jpg');
+        $card2 = new Card('ol_chapeau', '/assets/img/ol_casquette.jpg');
+        $card3 = new Card('ol_chat', '/assets/img/ol_lunette.jpg');
         $card4 = new Card('ol_alien', '/assets/img/ol_alien.jpg');
-        $card5 = new Card('ol_chapeau', '/assets/img/ol_chapeau.jpg');
-        $card6 = new Card('ol_femme', '/assets/img/ol_femme.jpg');
-        $card7 = new Card('ol_chat', '/assets/img/ol_chat.jpg');
-        $card8 = new Card('ol_cyborg', '/assets/img/ol_cyborg.jpg');
+        $card5 = new Card('ol_cyborg', '/assets/img/ol_chapeau.jpg');
+        $card6 = new Card('ol_dark', '/assets/img/ol_femme.jpg');
+        $card7 = new Card('ol_emo', '/assets/img/ol_chat.jpg');
+        $card8 = new Card('ol_squelette', '/assets/img/ol_cyborg.jpg');
         $card9 = new Card('ol_vieux', '/assets/img/ol_vieux.jpg');
         $card10 = new Card('ol_emo', '/assets/img/ol_emo.jpg');
 
