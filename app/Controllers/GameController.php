@@ -8,7 +8,6 @@ class Card
 {
     public function __construct(
         private readonly string $name,
-       
         private readonly string $image_path
     ) {}
 
@@ -16,7 +15,6 @@ class Card
     {
         return $this->name;
     }
-
 
     public function image_path(): string
     {
