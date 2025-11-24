@@ -37,10 +37,8 @@ class HomeController extends BaseController
         ]);
     }
 
-    public function game(): void 
-{
-    $this->render('home/game',);
+    public function game(): void
+    {
+        $this->render('home/game');
+    }
 }
-}
-
-
