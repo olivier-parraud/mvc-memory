@@ -61,7 +61,7 @@ class GameController extends BaseController
         $card7 = new Card('ol_emo', '/assets/img/ol_chat.jpg');
         $card8 = new Card('ol_squelette', '/assets/img/ol_cyborg.jpg');
         $card9 = new Card('ol_vieux', '/assets/img/ol_vieux.jpg');
-        $card10 = new Card('ol_emo', '/assets/img/ol_emo.jpg');
+        $card10 = new Card('', '/assets/img/ol_emo.jpg');
 
 
 
